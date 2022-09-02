@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+<div class="container text-center">
+
+  <form (ngSubmit)="onSubmitEditBook()" #editBook="ngForm">
+
+    <div class="form-group">
+      <label for="title">
+        Titre du livre
+      </label>
+
+      <div
+        *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="title.errors.required">
+          Le titre est requis.
+        </div>
+
+      </div>
+
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        name="title"
+        [(ngModel)]="book.title"
+        required
+        maxlength="30"
+        #title="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="author">
+        Auteur du livre
+      </label>
+
+      <div
+        *ngIf="author.invalid && (author.dirty || author.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="author.errors.required">
+          L'auteur est requis.
+        </div>
+
+      </div>
+
+      <input
+        type="text"
+        id="author"
+        class="form-control"
+        name="author"
+        [(ngModel)]="book.author"
+        required
+        maxlength="30"
+        #author="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="description">
+        Description du livre
+      </label>
+
+      <div
+        *ngIf="description.invalid && (description.dirty || description.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="description.errors.required">
+          La description est requise.
+        </div>
+
+      </div>
+
+      <textarea
+        id="description"
+        class="form-control"
+        name="description"
+        [(ngModel)]="book.description"
+        required
+        maxlength="1000"
+        #description="ngModel"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="status">
+        Statut du livre
+      </label>
+      <select id="status"
+              class="form-control"
+              name="status"
+              [(ngModel)]="book.status">
+        <option value="Pris">Pris</option>
+        <option value="Libre">Libre</option>
+      </select>
+    </div>
+
+    <button
+      class="btn btn-primary float-right text-uppercase"
+      [disabled]="editBook.invalid">
+      Modifier !
+    </button>
+
+    <a routerLink="/books" class="btn btn-dark float-left text-uppercase">
+      Retour
+    </a>
+
+  </form>
+
+</div>
